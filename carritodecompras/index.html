@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Carrito de Compras de Tenis</h1>
+
+    <div id="product-display">
+        <img id="product-image" src="tennis1-front.jpg" alt="Producto" />
+    </div>
+    
+    <div>
+        <button onclick="changeView('front')">Frente</button>
+        <button onclick="changeView('left')">Lateral Izquierdo</button>
+        <button onclick="changeView('right')">Lateral Derecho</button>
+        <button onclick="changeView('back')">Atrás</button>
+    </div>
+
+    <div>
+        <button onclick="toggleDescription()">Mostrar/Ocultar Descripción</button>
+    </div>
+
+    <div id="description" style="display: none;">
+        <p id="product-description">Descripción del producto: Este es un par de tenis excelente.</p>
+    </div>
+
+    <div>
+        <h2 id="price"></h2>
+        <button onclick="highlightPrice()">Resaltar Precio</button>
+    </div>
+
+    <h2>Seleccionar Tenis</h2>
+    <select id="shoe-selector" onchange="selectShoe()">
+        <option value="tennis1">Tenis 1</option>
+        <option value="tennis2">Tenis 2</option>
+        <option value="tennis3">Tenis 3</option>
+    </select>
+
+    <script src="script.js"></script>
+</body>
+</html>

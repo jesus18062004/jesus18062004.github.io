@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#product-display {
+    margin: 20px 0;
+}
+
+#product-image {
+    width: 200px;
+    height: auto;
+}
+
+button {
+    margin: 5px;
+}
+
+.highlight {
+    font-size: 2em; /* Aumenta el tamaño del texto */
+    color: red; /* Cambia el color a rojo */
+}
