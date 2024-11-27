@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de Página Web</title>
+  <style>
+    /* Menú Desplegable */
+    .menu ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      background-color: #333;
+    }
+
+    .menu ul li {
+      display: inline-block;
+    }
+
+    .menu ul li a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .menu ul li:hover {
+      background-color: #111;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #333;
+      min-width: 160px;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #575757;
+    }
+
+    /* Logo Fijo */
+    .logo {
+      padding: 10px;
+    }
+
+    /* Texto Animado */
+    .texto-animado {
+      font-size: 2em;
+      color: #333;
+      animation: animarTexto 2s ease-in-out infinite;
+    }
+
+    @keyframes animarTexto {
+      0% {
+        color: #333;
+        transform: translateY(0);
+      }
+      50% {
+        color: #FF6347;
+        transform: translateY(-10px);
+      }
+      100% {
+        color: #333;
+        transform: translateY(0);
+      }
+    }
+
+    /* Slider */
+    .slider {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .fade {
+      animation: fade 5s infinite;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Galería */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    .galeria-item {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .galeria-item:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menú -->
+  <nav class="menu">
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li class="dropdown">
+        <a href="#">Servicios</a>
+        <ul class="dropdown-content">
+          <li><a href="#">Servicio 1</a></li>
+          <li><a href="#">Servicio 2</a></li>
+          <li><a href="#">Servicio 3</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Nosotros</a></li>
+      <li><a href="#">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Logo Fijo -->
+  <header>
+    <img src="logo.png" alt="Logo" class="logo">
+  </header>
+
+  <!-- Texto Animado -->
+  <h1 class="texto-animado">¡Bienvenidos a Nuestro Sitio Web!</h1>
+
+  <!-- Slider -->
+  <div class="slider">
+    <div class="slide fade">
+      <img src="img1.jpg" alt="Imagen 1">
+    </div>
+    <div class="slide fade">
+      <img src="img2.jpg" alt="Imagen 2">
+    </div>
+    <div class="slide fade">
+      <img src="img3.jpg" alt="Imagen 3">
+    </div>
+  </div>
+
+  <!-- Galería de Fotos -->
+  <div class="galeria">
+    <img src="foto1.jpg" alt="Foto 1" class="galeria-item">
+    <img src="foto2.jpg" alt="Foto 2" class="galeria-item">
+    <img src="foto3.jpg" alt="Foto 3" class="galeria-item">
+    <img src="foto4.jpg" alt="Foto 4" class="galeria-item">
+  </div>
+
+  <!-- Script para JavaScript -->
+  <script>
+    // 1. Menú Desplegable
+    document.addEventListener("DOMContentLoaded", () => {
+      const dropdown = document.querySelector('.dropdown');
+      dropdown.addEventListener('click', function() {
+        const dropdownContent = this.querySelector('.dropdown-content');
+        dropdownContent.classList.toggle('show');
+      });
+    });
+
+    // 2. Animación de Texto
+    let textoAnimado = document.querySelector('.texto-animado');
+    let colores = ['#FF6347', '#32CD32', '#1E90FF', '#FFD700', '#8A2BE2'];
+    let index = 0;
+
+    function cambiarColorTexto() {
+      textoAnimado.style.color = colores[index];
+      index = (index + 1) % colores.length;
+    }
+    setInterval(cambiarColorTexto, 2000);
+
+    // 3. Logo Fijo
+    let logo = document.querySelector('.logo');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        logo.classList.add('logo-fixed');
+      } else {
+        logo.classList.remove('logo-fixed');
+      }
+    });
+
+    // 4. Slider de Imágenes
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+
+    function cambiarSlide() {
+      slides[currentSlide].classList.remove('fade');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('fade');
+    }
+    setInterval(cambiarSlide, 5000);
+
+    // 5. Galería de Fotos con Zoom
+    let imagenesGaleria = document.querySelectorAll('.galeria-item');
+    imagenesGaleria.forEach(img => {
+      img.addEventListener('mouseover', () => {
+        img.style.transform = 'scale(1.2)';
+      });
+      img.addEventListener('mouseout', () => {
+        img.style.transform = 'scale(1)';
+      });
+    });
+  </script>
+
+</body>
+</html>
